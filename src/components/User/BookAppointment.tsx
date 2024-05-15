@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Button, FormControl, FormLabel, Heading, Input, List, ListItem, Stack } from '@chakra-ui/react';
-import api from '../../api';
+import api from '../../hooks/api';
 
 const BookAppointment: React.FC = () => {
     const [date, setDate] = useState('');

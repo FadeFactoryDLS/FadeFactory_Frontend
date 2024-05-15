@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Box, Button, FormControl, FormLabel, Heading, Input, Stack } from '@chakra-ui/react';
-import api from '../../api';
+import api from '../../hooks/api';
 
 const Register: React.FC = () => {
     const [username, setUsername] = useState('');
