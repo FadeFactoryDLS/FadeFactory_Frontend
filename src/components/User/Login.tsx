@@ -2,19 +2,21 @@ import React, { useState } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { Box, Button, FormControl, FormLabel, Heading, Input, Stack } from '@chakra-ui/react';
+import { loginAccount } from '../../hooks/api';
 
 const UserLogin: React.FC = () => {
-    const [username, setUsername] = useState('');
+    const [firstName, setFirstName] = useState('');
     const [password, setPassword] = useState('');
     const { login } = useAuth();
     const navigate = useNavigate();
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (username === 'user' && password === 'user') {
-            login('user');
+        try {
+            const data = await loginAccount({ firstName, password });
+            login(data.token); // Assuming the API returns a token
             navigate('/user/dashboard');
-        } else {
+        } catch (err) {
             alert('Invalid credentials');
         }
     };
@@ -24,9 +26,9 @@ const UserLogin: React.FC = () => {
             <Heading mb={6}>User Login</Heading>
             <form onSubmit={handleSubmit}>
                 <Stack spacing={4}>
-                    <FormControl id="username">
-                        <FormLabel>Username</FormLabel>
-                        <Input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+                    <FormControl id="firstName">
+                        <FormLabel>First Name</FormLabel>
+                        <Input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
                     </FormControl>
                     <FormControl id="password">
                         <FormLabel>Password</FormLabel>
