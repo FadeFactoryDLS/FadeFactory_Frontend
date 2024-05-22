@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Box, Button, FormControl, FormLabel, Heading, Input, Stack, Checkbox, Alert, AlertIcon } from '@chakra-ui/react';
 import { registerAccount } from '../../hooks/api';
+import { useNavigate } from 'react-router-dom';
 
 const Register: React.FC = () => {
     const [firstName, setFirstName] = useState('');
@@ -8,13 +9,19 @@ const Register: React.FC = () => {
     const [password, setPassword] = useState('');
     const [isPromotional, setIsPromotional] = useState(false);
     const [error, setError] = useState('');
+    const navigate = useNavigate();
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setError('');
+        if (!firstName || !email || !password) {
+            setError('All fields must be filled out.');
+            return;
+        }
         try {
             await registerAccount({ firstName, email, password, isPromotional });
             alert('User registered successfully!');
+            navigate('/user/login');
         } catch (err: any) {
             if (err.response && err.response.status === 409) {
                 setError('Email is already in use');
@@ -35,15 +42,15 @@ const Register: React.FC = () => {
             )}
             <form onSubmit={handleSubmit}>
                 <Stack spacing={4}>
-                    <FormControl id="firstName">
+                    <FormControl id="firstName" isRequired>
                         <FormLabel>First Name</FormLabel>
                         <Input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
                     </FormControl>
-                    <FormControl id="email">
+                    <FormControl id="email" isRequired>
                         <FormLabel>Email</FormLabel>
                         <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
                     </FormControl>
-                    <FormControl id="password">
+                    <FormControl id="password" isRequired>
                         <FormLabel>Password</FormLabel>
                         <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                     </FormControl>
@@ -52,7 +59,7 @@ const Register: React.FC = () => {
                             Receive Promotional Emails
                         </Checkbox>
                     </FormControl>
-                    <Button type="submit" colorScheme="teal">
+                    <Button type="submit" colorScheme="teal" disabled={!firstName || !email || !password}>
                         Register
                     </Button>
                 </Stack>
