@@ -14,7 +14,7 @@ export const getAllAccounts = async () => {
     return response.data;
 };
 
-export const registerAccount = async (account: any) => {
+export const registerAccount = async (account: { firstName: string; email: string; password: string; isPromotional: boolean }) => {
     const response = await api.post('/Accounts/register', account);
     return response.data;
 };

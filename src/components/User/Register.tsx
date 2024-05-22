@@ -15,8 +15,12 @@ const Register: React.FC = () => {
         try {
             await registerAccount({ firstName, email, password, isPromotional });
             alert('User registered successfully!');
-        } catch (err) {
-            setError('Failed to register user. Please try again.');
+        } catch (err: any) {
+            if (err.response && err.response.status === 409) {
+                setError('Email is already in use');
+            } else {
+                setError('Failed to register user. Please try again.');
+            }
         }
     };
 
