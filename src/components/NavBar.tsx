@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Box, Button, HStack, Spacer } from '@chakra-ui/react';
+import { Box, Button, HStack } from '@chakra-ui/react';
 import { useAuth } from '../contexts/AuthContext';
 
 const NavBar: React.FC = () => {
