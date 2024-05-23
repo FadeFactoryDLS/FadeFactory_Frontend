@@ -17,8 +17,6 @@ export const registerAccount = async (account: { firstName: string; email: strin
     return response.data;
 };
 
-
-
 export const getAccountById = async (id: string) => {
     const response = await api.get(`/Accounts/${id}`);
     return response.data;
