@@ -10,9 +10,6 @@ const UserDashboard: React.FC = () => {
                 <Button as={Link} to="/user/book" colorScheme="teal">
                     Book Appointment
                 </Button>
-                <Button as={Link} to="/user/delete" colorScheme="teal">
-                    Delete Account
-                </Button>
                 <Button as={Link} to="/user/logout" colorScheme="teal">
                     Logout
                 </Button>

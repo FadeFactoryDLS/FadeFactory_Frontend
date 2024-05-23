@@ -1,8 +1,23 @@
 import axios from 'axios';
+import { API_URLS } from '../constants';
 
+const { ACCOUNTS_API_URL, BOOKINGS_API_URL } = API_URLS;
 const api = axios.create({
     baseURL: 'https://fadefactoryaccounts.azurewebsites.net/api',
 });
+
+
+export const loginAccount = async (credentials: { FirstName: string, email: string; password: string }) => {
+    const response = await axios.post(`${ACCOUNTS_API_URL}/login`, credentials);
+    return response.data;
+};
+
+export const registerAccount = async (account: { firstName: string; email: string; password: string; isPromotional: boolean }) => {
+    const response = await axios.post(`${ACCOUNTS_API_URL}/register`, account);
+    return response.data;
+};
+
+
 
 export const getAccountById = async (id: string) => {
     const response = await api.get(`/Accounts/${id}`);
@@ -11,16 +26,6 @@ export const getAccountById = async (id: string) => {
 
 export const getAllAccounts = async () => {
     const response = await api.get('/Accounts/getAll');
-    return response.data;
-};
-
-export const registerAccount = async (account: { firstName: string; email: string; password: string; isPromotional: boolean }) => {
-    const response = await api.post('/Accounts/register', account);
-    return response.data;
-};
-
-export const loginAccount = async (credentials: any) => {
-    const response = await api.post('/Register/login', credentials);
     return response.data;
 };
 

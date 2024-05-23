@@ -1,23 +1,26 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
-import { Box, Button, FormControl, FormLabel, Heading, Input, Stack } from '@chakra-ui/react';
+import { Box, Button, FormControl, FormLabel, Heading, Input, Stack, Alert, AlertIcon } from '@chakra-ui/react';
 import { loginAccount } from '../../hooks/api';
 
-const UserLogin: React.FC = () => {
-    const [firstName, setFirstName] = useState('');
+const Login: React.FC = () => {
+    const [email, setEmail] = useState('');
+    const [FirstName] = useState('string');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
     const { login } = useAuth();
     const navigate = useNavigate();
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        setError('');
         try {
-            const data = await loginAccount({ firstName, password });
-            login(data.token); // Assuming the API returns a token
+            const token = await loginAccount({ FirstName, email, password });
+            login(token);
             navigate('/user/dashboard');
         } catch (err) {
-            alert('Invalid credentials');
+            setError('Invalid credentials');
         }
     };
 
@@ -26,15 +29,21 @@ const UserLogin: React.FC = () => {
             <Heading mb={6}>User Login</Heading>
             <form onSubmit={handleSubmit}>
                 <Stack spacing={4}>
-                    <FormControl id="firstName">
-                        <FormLabel>First Name</FormLabel>
-                        <Input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+                    <FormControl id="email" isRequired>
+                        <FormLabel>Email</FormLabel>
+                        <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
                     </FormControl>
-                    <FormControl id="password">
+                    <FormControl id="password" isRequired>
                         <FormLabel>Password</FormLabel>
                         <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                     </FormControl>
-                    <Button type="submit" colorScheme="teal">
+                    {error && (
+                        <Alert status="error">
+                            <AlertIcon />
+                            {error}
+                        </Alert>
+                    )}
+                    <Button type="submit" colorScheme="teal" width="full">
                         Login
                     </Button>
                 </Stack>
@@ -43,4 +52,4 @@ const UserLogin: React.FC = () => {
     );
 };
 
-export default UserLogin;
+export default Login;
