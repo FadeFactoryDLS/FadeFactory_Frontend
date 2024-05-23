@@ -43,7 +43,6 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         setIsAuthenticated(true);
         const decoded: DecodedToken = jwtDecode(token);
         setRole(decoded.role);
-        console.log(decoded.exp * 1000, Date.now());
     };
 
     const logout = () => {
