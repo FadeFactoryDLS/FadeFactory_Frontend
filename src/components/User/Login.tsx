@@ -18,14 +18,14 @@ const Login: React.FC = () => {
         try {
             const token = await loginAccount({ FirstName, email, password });
             login(token);
-            navigate('/user/dashboard');
+            navigate('/');
         } catch (err) {
             setError('Invalid credentials');
         }
     };
 
     return (
-        <Box maxW="sm" mx="auto" mt={10} p={6} boxShadow="md" borderRadius="md">
+        <Box maxW="sm" mx="auto" mt={10} p={6} boxShadow="2xl" borderRadius="md">
             <Heading mb={6}>User Login</Heading>
             <form onSubmit={handleSubmit}>
                 <Stack spacing={4}>

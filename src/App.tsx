@@ -1,11 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
-import AdminDashboard from './components/Admin/AdminDashboard';
+import AdminDashboard from './components/Admin/Dashboard';
 import BookedAppointments from './components/Admin/BookedAppointments';
 import AdminLogin from './components/Admin/Login';
 import AdminLogout from './components/Admin/Logout';
-import UserDashboard from './components/User/UserDashboard';
 import BookAppointment from './components/User/BookAppointment';
 import Login from './components/User/Login';
 import UserLogout from './components/User/Logout';
@@ -22,14 +21,23 @@ const App: React.FC = () => {
           <Route path="/admin/appointments" element={<BookedAppointments />} />
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin/logout" element={<AdminLogout />} />
-          <Route path="/user/dashboard" element={<UserDashboard />} />
           <Route path="/user/book" element={<BookAppointment />} />
           <Route path="/user/login" element={<Login />} />
           <Route path="/user/logout" element={<UserLogout />} />
           <Route path="/user/register" element={<Register />} />
+          <Route path="/" element={<Home />} />
         </Routes>
       </Router>
     </AuthProvider>
+  );
+};
+
+const Home: React.FC = () => {
+  return (
+    <div>
+      <h1>Available appointments</h1>
+      
+    </div>
   );
 };
 

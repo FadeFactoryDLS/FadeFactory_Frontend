@@ -9,7 +9,7 @@ const UserLogout: React.FC = () => {
 
     useEffect(() => {
         logout();
-        navigate('/user/login');
+        navigate('/');
     }, [logout, navigate]);
 
     return (

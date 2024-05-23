@@ -18,7 +18,7 @@ const NavBar: React.FC = () => {
                         color="white"
                         _hover={{ bg: "teal.600" }}
                     >
-                        Home
+                        Fade Factory
                     </Button>
                     {isAuthenticated && (
                         <>
@@ -32,18 +32,6 @@ const NavBar: React.FC = () => {
                                     _hover={{ bg: "teal.600" }}
                                 >
                                     Admin Dashboard
-                                </Button>
-                            )}
-                            {role === 'user' && (
-                                <Button
-                                    as={Link}
-                                    to="/user/dashboard"
-                                    colorScheme="teal"
-                                    variant="ghost"
-                                    color="white"
-                                    _hover={{ bg: "teal.600" }}
-                                >
-                                    User Dashboard
                                 </Button>
                             )}
                         </>
@@ -77,7 +65,6 @@ const NavBar: React.FC = () => {
                         <Button
                             onClick={() => {
                                 logout();
-                                window.location.href = '/user/login';
                             }}
                             colorScheme="teal"
                             variant="solid"
