@@ -18,8 +18,8 @@ const App: React.FC = () => {
       <Router>
         <NavBar />
         <Routes>
-          <Route path="/dashboard" element={<ProtectedRoute element={<Dashboard />} requiredRole="Admin" />} />
-          <Route path="/appointments" element={<ProtectedRoute element={<BookedAppointments />} requiredRole="Admin" />} />
+          <Route path="/admin/dashboard" element={<ProtectedRoute element={<Dashboard />} requiredRole="Admin" />} />
+          <Route path="/admin/appointments" element={<ProtectedRoute element={<BookedAppointments />} requiredRole="Admin" />} />
           <Route path="/user/book" element={<BookAppointment />} />
           <Route path="/login" element={<PublicRoute element={<Login />} redirectPath="/" />} />
           <Route path="/logout" element={<UserLogout />} />
