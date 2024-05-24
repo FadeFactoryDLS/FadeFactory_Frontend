@@ -6,10 +6,9 @@ import UpdateUser from './UpdateUser';
 import DeleteUser from './DeleteUser';
 
 const Dashboard: React.FC = () => {
-
     return (
-        <Box p={4}>
-            <Tabs variant={'soft-rounded'} colorScheme={'teal'}>
+        <Box justifyContent="center" p={4}>
+            <Tabs variant="soft-rounded" colorScheme="teal">
                 <TabList>
                     <Tab>Appointments</Tab>
                     <Tab>Users</Tab>

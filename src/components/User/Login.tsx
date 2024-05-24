@@ -25,7 +25,7 @@ const Login: React.FC = () => {
     };
 
     return (
-        <Box maxW="sm" mx="auto" mt={10} p={6} boxShadow="2xl" borderRadius="md">
+        <Box maxW="sm" mx="auto" mt={10} p={6} boxShadow="xl" borderRadius="md">
             <Heading mb={6}>User Login</Heading>
             <form onSubmit={handleSubmit}>
                 <Stack spacing={4}>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getAccountById, getAllAccounts } from "../../hooks/api";
-import { Box, Button, Input, useToast, Table, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/react";
+import { Box, Button, Input, useToast, Table, Tbody, Td, Th, Thead, Tr, HStack, Center } from "@chakra-ui/react";
 
 const GetUser: React.FC = () => {
     const [accountId, setAccountId] = useState<string>('');
@@ -25,7 +25,7 @@ const GetUser: React.FC = () => {
             }
         };
         fetchUsers();
-    }, [toast])
+    }, [toast]);
 
     const handleSearch = async () => {
         if (accountId) {
@@ -48,12 +48,17 @@ const GetUser: React.FC = () => {
 
     return (
         <Box p={4}>
-            <Input
-                placeholder="Enter Account ID"
-                value={accountId}
-                onChange={(e) => setAccountId(e.target.value)}
-            />
-            <Button mt={4} colorScheme="teal" onClick={handleSearch}>Search</Button>
+            <Center>
+                <HStack spacing={4}>
+                    <Input
+                        placeholder="Enter Account ID"
+                        value={accountId}
+                        onChange={(e) => setAccountId(e.target.value)}
+                        width="200px"
+                    />
+                    <Button colorScheme="teal" onClick={handleSearch}>Search</Button>
+                </HStack>
+            </Center>
             <Table variant="simple" mt={4}>
                 <Thead>
                     <Tr>
