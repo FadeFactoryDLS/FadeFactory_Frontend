@@ -102,7 +102,7 @@ const AvailableAppointments: React.FC = () => {
                 <Grid templateColumns="repeat(4, 1fr)" gap={4}>
                     {slots.map((slot, index) => (
                         <GridItem key={index} p={4} borderWidth="1px" borderRadius="lg">
-                            <Text>{slot.toLocaleTimeString()}</Text>
+                            <Text>{slot.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</Text>
                             <Button
                                 colorScheme="teal"
                                 size="sm"
