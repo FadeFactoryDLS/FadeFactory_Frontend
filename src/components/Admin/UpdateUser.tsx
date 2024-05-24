@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { getAccountById, updateAccount } from "../../hooks/api";
-import { Box, Button, Input, useToast, Checkbox, FormControl, FormLabel, Grid } from "@chakra-ui/react";
+import { Box, Button, Input, useToast, Checkbox, FormControl, FormLabel } from "@chakra-ui/react";
 
 const UpdateUser: React.FC<{}> = () => {
     const [accountId, setAccountId] = useState<string>('');
