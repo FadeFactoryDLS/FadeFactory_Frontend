@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { getAllAccounts, deleteAccount, getAccountById, updateAccount } from '../../hooks/api';
+import React, { useEffect } from 'react';
 import { Box, Table, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react';
 
 const Dashboard: React.FC = () => {
