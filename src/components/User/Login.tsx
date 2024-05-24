@@ -6,7 +6,7 @@ import { loginAccount } from '../../hooks/api';
 
 const Login: React.FC = () => {
     const [email, setEmail] = useState('');
-    const [FirstName] = useState('string');
+    const [firstName] = useState('string');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const { login } = useAuth();
@@ -16,7 +16,7 @@ const Login: React.FC = () => {
         e.preventDefault();
         setError('');
         try {
-            const token = await loginAccount({ FirstName, email, password });
+            const token = await loginAccount({ firstName, email, password });
             login(token);
             navigate('/');
         } catch (err) {

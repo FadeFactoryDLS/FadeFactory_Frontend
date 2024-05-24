@@ -20,24 +20,20 @@ const NavBar: React.FC = () => {
                     >
                         Fade Factory
                     </Button>
-                    {isAuthenticated && (
-                        <>
-                            {role === 'Admin' && (
-                                <Button
-                                    as={Link}
-                                    to="/dashboard"
-                                    colorScheme="teal"
-                                    variant="ghost"
-                                    color="white"
-                                    _hover={{ bg: "teal.600" }}
-                                >
-                                    Admin Dashboard
-                                </Button>
-                            )}
-                        </>
-                    )}
                 </HStack>
                 <HStack spacing={4}>
+                    {isAuthenticated && role === 'Admin' && (
+                        <Button
+                            as={Link}
+                            to="/admin/dashboard"
+                            colorScheme="teal"
+                            variant="ghost"
+                            color="white"
+                            _hover={{ bg: "teal.600" }}
+                        >
+                            Dashboard
+                        </Button>
+                    )}
                     {!isAuthenticated ? (
                         <>
                             <Button
