@@ -33,6 +33,11 @@ export const updateAccount = async (id: string, account: any) => {
     return response.data;
 };
 
+export const getAppointments = async () => {
+    const response = await axios.get(`${BOOKINGS_API_URL}/GetAll`);
+    return response.data;
+};
+
 export default {
     loginAccount,
     registerAccount,
@@ -40,4 +45,5 @@ export default {
     getAllAccounts,
     deleteAccount,
     updateAccount,
+    getAppointments,
 };

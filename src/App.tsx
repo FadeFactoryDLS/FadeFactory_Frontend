@@ -10,6 +10,7 @@ import Register from './components/User/Register';
 import NavBar from './components/NavBar';
 import ProtectedRoute from './components/Routes/ProtectedRoute';
 import PublicRoute from './components/Routes/PublicRoute';
+import Home from './components/Home';
 
 const App: React.FC = () => {
   return (
@@ -27,14 +28,6 @@ const App: React.FC = () => {
         </Routes>
       </Router>
     </AuthProvider>
-  );
-};
-
-const Home: React.FC = () => {
-  return (
-    <div>
-      <h1>Available appointments</h1>
-    </div>
   );
 };
 
