@@ -28,13 +28,18 @@ const DeleteUser: React.FC = () => {
     };
 
     return (
-        <Box p={4}>
-            <Input
-                placeholder="Enter Account ID"
-                value={accountId}
-                onChange={(e) => setAccountId(e.target.value)}
-            />
-            <Button mt={4} colorScheme="red" onClick={handleDelete}>Delete Account</Button>
+        <Box p={4} display="flex" flexDirection="column" alignItems="center">
+            <Box width="300px" padding="6" borderWidth="1px" borderRadius="md" boxShadow="md">
+                <Input
+                    placeholder="Enter Account ID"
+                    value={accountId}
+                    onChange={(e) => setAccountId(e.target.value)}
+                    marginBottom="4"
+                />
+                <Button width="100%" colorScheme="red" onClick={handleDelete}>
+                    Delete Account
+                </Button>
+            </Box>
         </Box>
     );
 };

@@ -31,7 +31,7 @@ const Home: React.FC = () => {
     if (loading) {
         return (
             <Center height="100vh">
-                <Spinner size="2xl" />
+                <Spinner size="xl" />
             </Center>
         );
     }
@@ -42,7 +42,7 @@ const Home: React.FC = () => {
 
     return (
         <Box p={4}>
-            <Text fontSize="2xl" mb={4}>Available appointments</Text>
+            <Text fontSize="xl" mb={4}>Available appointments</Text>
             <List spacing={3} styleType="none">
                 {appointments.map(appointment => (
                     <ListItem key={appointment.bookingId} p={3} borderWidth="1px" borderRadius="lg">
