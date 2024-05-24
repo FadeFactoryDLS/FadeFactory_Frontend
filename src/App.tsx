@@ -1,16 +1,16 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
-import AdminDashboard from './components/Admin/AdminDashboard';
+import Dashboard from './components/Admin/Dashboard';
 import BookedAppointments from './components/Admin/BookedAppointments';
-import AdminLogin from './components/Admin/Login';
-import AdminLogout from './components/Admin/Logout';
-import UserDashboard from './components/User/UserDashboard';
 import BookAppointment from './components/User/BookAppointment';
-import UserLogin from './components/User/Login';
+import Login from './components/User/Login';
 import UserLogout from './components/User/Logout';
 import Register from './components/User/Register';
 import NavBar from './components/NavBar';
+import ProtectedRoute from './components/Routes/ProtectedRoute';
+import PublicRoute from './components/Routes/PublicRoute';
+import Home from './components/Home';
 
 const App: React.FC = () => {
   return (
@@ -18,15 +18,13 @@ const App: React.FC = () => {
       <Router>
         <NavBar />
         <Routes>
-          <Route path="/admin/dashboard" element={<AdminDashboard />} />
-          <Route path="/admin/appointments" element={<BookedAppointments />} />
-          <Route path="/admin/login" element={<AdminLogin />} />
-          <Route path="/admin/logout" element={<AdminLogout />} />
-          <Route path="/user/dashboard" element={<UserDashboard />} />
+          <Route path="/dashboard" element={<ProtectedRoute element={<Dashboard />} requiredRole="Admin" />} />
+          <Route path="/appointments" element={<ProtectedRoute element={<BookedAppointments />} requiredRole="Admin" />} />
           <Route path="/user/book" element={<BookAppointment />} />
-          <Route path="/user/login" element={<UserLogin />} />
-          <Route path="/user/logout" element={<UserLogout />} />
-          <Route path="/user/register" element={<Register />} />
+          <Route path="/login" element={<PublicRoute element={<Login />} redirectPath="/" />} />
+          <Route path="/logout" element={<UserLogout />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/" element={<Home />} />
         </Routes>
       </Router>
     </AuthProvider>

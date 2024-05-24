@@ -1,12 +1,12 @@
-# Introduction
+# Microservice 5 - Frontend App
 
 This repository is 1 of 5 microservices for the "FadeFactory" exam project in the subject "Development of Large Systems" (DLS)
 
-# Hosting
+## Hosting
 
 Hosted on Vercel at: <https://fade-factory-frontend.vercel.app/>
 
-# Local development
+## Local development
 
 Run the following commands
 

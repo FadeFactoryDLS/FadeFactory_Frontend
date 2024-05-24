@@ -3,13 +3,13 @@ import { useAuth } from '../../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { Box, Spinner } from '@chakra-ui/react';
 
-const UserLogout: React.FC = () => {
+const Logout: React.FC = () => {
     const { logout } = useAuth();
     const navigate = useNavigate();
 
     useEffect(() => {
         logout();
-        navigate('/user/login');
+        navigate('/');
     }, [logout, navigate]);
 
     return (
@@ -19,4 +19,4 @@ const UserLogout: React.FC = () => {
     );
 };
 
-export default UserLogout;
+export default Logout;

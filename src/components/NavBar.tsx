@@ -4,82 +4,77 @@ import { Box, Button, HStack } from '@chakra-ui/react';
 import { useAuth } from '../contexts/AuthContext';
 
 const NavBar: React.FC = () => {
-    const { isAuthenticated, role } = useAuth();
+    const { isAuthenticated, role, logout } = useAuth();
 
     return (
         <Box bg="teal.500" p={4}>
-            <HStack spacing={4}>
-                <Button
-                    as={Link}
-                    to="/"
-                    colorScheme="teal"
-                    variant="ghost"
-                    color="white"
-                    _hover={{ bg: "teal.600" }}
-                >
-                    Home
-                </Button>
-                {isAuthenticated ? (
-                    <>
-                        {role === 'admin' && (
+            <HStack spacing={4} justifyContent="space-between">
+                <HStack spacing={4}>
+                    <Button
+                        as={Link}
+                        to="/"
+                        colorScheme="teal"
+                        variant="ghost"
+                        color="white"
+                        _hover={{ bg: "teal.600" }}
+                    >
+                        Fade Factory
+                    </Button>
+                    {isAuthenticated && (
+                        <>
+                            {role === 'Admin' && (
+                                <Button
+                                    as={Link}
+                                    to="/dashboard"
+                                    colorScheme="teal"
+                                    variant="ghost"
+                                    color="white"
+                                    _hover={{ bg: "teal.600" }}
+                                >
+                                    Admin Dashboard
+                                </Button>
+                            )}
+                        </>
+                    )}
+                </HStack>
+                <HStack spacing={4}>
+                    {!isAuthenticated ? (
+                        <>
                             <Button
                                 as={Link}
-                                to="/admin/dashboard"
+                                to="/login"
+                                colorScheme="teal"
+                                variant="solid"
+                                color="white"
+                                _hover={{ bg: "teal.600" }}
+                            >
+                                Login
+                            </Button>
+                            <Button
+                                as={Link}
+                                to="/register"
                                 colorScheme="teal"
                                 variant="ghost"
                                 color="white"
                                 _hover={{ bg: "teal.600" }}
                             >
-                                Admin Dashboard
+                                Register
                             </Button>
-                        )}
-                        {role === 'user' && (
-                            <Button
-                                as={Link}
-                                to="/user/dashboard"
-                                colorScheme="teal"
-                                variant="ghost"
-                                color="white"
-                                _hover={{ bg: "teal.600" }}
-                            >
-                                User Dashboard
-                            </Button>
-                        )}
-                    </>
-                ) : (
-                    <>
+                        </>
+                    ) : (
                         <Button
-                            as={Link}
-                            to="/user/login"
+                            onClick={() => {
+                                logout();
+                            }}
                             colorScheme="teal"
-                            variant="ghost"
+                            variant="solid"
                             color="white"
                             _hover={{ bg: "teal.600" }}
                         >
-                            User Login
+                            Logout
                         </Button>
-                        <Button
-                            as={Link}
-                            to="/user/register"
-                            colorScheme="teal"
-                            variant="ghost"
-                            color="white"
-                            _hover={{ bg: "teal.600" }}
-                        >
-                            Register
-                        </Button>
-                        <Button
-                            as={Link}
-                            to="/admin/login"
-                            colorScheme="teal"
-                            variant="ghost"
-                            color="white"
-                            _hover={{ bg: "teal.600" }}
-                        >
-                            Admin Login
-                        </Button>
-                    </>
-                )}
+                    )}
+                </HStack>
             </HStack>
         </Box>
     );
