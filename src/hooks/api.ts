@@ -44,7 +44,7 @@ export const deleteAccount = async (id: string) => {
     return response.data;
 };
 
-export const updateAccount = async (id: string, account: any) => {
+export const updateAccount = async (_id: string, account: any) => {
     const response = await axios.put(`${ACCOUNTS_API_URL}`, account, {
         headers: {
             Authorization: `Bearer ${getToken()}`
