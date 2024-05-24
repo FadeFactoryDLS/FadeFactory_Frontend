@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
 import { jwtDecode } from 'jwt-decode';
+import { CLAIMS } from '../constants';
 
 interface AuthContextProps {
     isAuthenticated: boolean;
@@ -11,16 +12,13 @@ interface AuthContextProps {
 const AuthContext = createContext<AuthContextProps | undefined>(undefined);
 
 interface DecodedToken {
-    role: string;
     exp: number;
+    [CLAIMS.ROLE]: string;
 }
 
 const isTokenExpired = (token: string): boolean => {
     const decoded: DecodedToken = jwtDecode(token);
-    if (decoded.exp * 1000 < Date.now()) {
-        return true;
-    }
-    return false;
+    return decoded.exp * 1000 < Date.now();
 };
 
 export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
@@ -32,7 +30,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         if (token && !isTokenExpired(token)) {
             const decoded: DecodedToken = jwtDecode(token);
             setIsAuthenticated(true);
-            setRole(decoded.role);
+            setRole(decoded[CLAIMS.ROLE]);
         } else {
             localStorage.removeItem('token');
         }
@@ -42,8 +40,11 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         localStorage.setItem('token', token);
         setIsAuthenticated(true);
         const decoded: DecodedToken = jwtDecode(token);
-        setRole(decoded.role);
+        setRole(decoded[CLAIMS.ROLE]);
     };
+
+    useEffect(() => {
+    }, [role]);
 
     const logout = () => {
         localStorage.removeItem('token');

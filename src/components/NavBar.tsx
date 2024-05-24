@@ -22,10 +22,10 @@ const NavBar: React.FC = () => {
                     </Button>
                     {isAuthenticated && (
                         <>
-                            {role === 'admin' && (
+                            {role === 'Admin' && (
                                 <Button
                                     as={Link}
-                                    to="/admin/dashboard"
+                                    to="/dashboard"
                                     colorScheme="teal"
                                     variant="ghost"
                                     color="white"
@@ -42,7 +42,7 @@ const NavBar: React.FC = () => {
                         <>
                             <Button
                                 as={Link}
-                                to="/user/login"
+                                to="/login"
                                 colorScheme="teal"
                                 variant="solid"
                                 color="white"
@@ -52,7 +52,7 @@ const NavBar: React.FC = () => {
                             </Button>
                             <Button
                                 as={Link}
-                                to="/user/register"
+                                to="/register"
                                 colorScheme="teal"
                                 variant="ghost"
                                 color="white"

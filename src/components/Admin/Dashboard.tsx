@@ -1,21 +1,34 @@
-import React from 'react';
-import { Box, Button, Heading, Stack } from '@chakra-ui/react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { getAllAccounts, deleteAccount, getAccountById, updateAccount } from '../../hooks/api';
+import { Box, Table, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react';
 
-const AdminDashboard: React.FC = () => {
+const Dashboard: React.FC = () => {
+
+    useEffect(() => {
+    }, []);
+
     return (
-        <Box p={4}>
-            <Heading mb={4}>Admin Dashboard</Heading>
-            <Stack spacing={4}>
-                <Button as={Link} to="/admin/appointments" colorScheme="teal">
-                    View Booked Appointments
-                </Button>
-                <Button as={Link} to="/admin/logout" colorScheme="teal">
-                    Logout
-                </Button>
-            </Stack>
+        <Box>
+            <Table>
+                <Thead>
+                    <Tr>
+                        <Th>Placeholder</Th>
+                        <Th>Placeholder</Th>
+                        <Th>Placeholder</Th>
+                        <Th>Placeholder</Th>
+                    </Tr>
+                </Thead>
+                <Tbody>
+                    <Tr>
+                        <Td>Placeholder</Td>
+                        <Td>Placeholder</Td>
+                        <Td>Placeholder</Td>
+                        <Td>Placeholder</Td>
+                    </Tr>
+                </Tbody>
+            </Table>
         </Box>
     );
 };
 
-export default AdminDashboard;
+export default Dashboard;
