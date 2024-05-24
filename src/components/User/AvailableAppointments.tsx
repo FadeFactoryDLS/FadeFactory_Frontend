@@ -14,20 +14,20 @@ const AvailableAppointments: React.FC = () => {
     const [appointments, setAppointments] = useState<Booking[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
+    const [currentDate, setCurrentDate] = useState<Date>(new Date());
     const toast = useToast();
 
-    const generateTimeSlots = () => {
+    const generateTimeSlots = (date: Date) => {
         const slots = [];
         const startHour = 10;
         const endHour = 18;
-        const slotDuration = 30; // in minutes
+        const slotDuration = 30;
 
-        const today = new Date();
-        today.setHours(0, 0, 0, 0);
+        date.setHours(0, 0, 0, 0); // Sets to start of day
 
         for (let hour = startHour; hour < endHour; hour++) {
             for (let minute = 0; minute < 60; minute += slotDuration) {
-                const slot = new Date(today);
+                const slot = new Date(date);
                 slot.setHours(hour, minute, 0, 0);
                 slots.push(slot);
             }
@@ -48,9 +48,14 @@ const AvailableAppointments: React.FC = () => {
 
     useEffect(() => {
         fetchAppointments();
+    }, [currentDate]);
+
+    useEffect(() => {
+        const today = new Date();
+        if (today.toDateString() !== currentDate.toDateString()) {
+            setCurrentDate(today);
+        }
     }, []);
-
-
 
     const handleBookAppointment = async (timeslot: Date) => {
         try {
@@ -82,7 +87,7 @@ const AvailableAppointments: React.FC = () => {
         return isAuthenticated && appointments.some(appointment => appointment.email === localStorage.getItem('userEmail'));
     };
 
-    const slots = generateTimeSlots();
+    const slots = generateTimeSlots(currentDate);
 
     return (
         <Box p={4}>
@@ -91,6 +96,8 @@ const AvailableAppointments: React.FC = () => {
                 <Center height="100vh">
                     <Spinner size="xl" />
                 </Center>
+            ) : error ? (
+                <Text>{error}</Text>
             ) : (
                 <Grid templateColumns="repeat(4, 1fr)" gap={4}>
                     {slots.map((slot, index) => (
