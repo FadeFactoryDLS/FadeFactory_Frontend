@@ -14,6 +14,7 @@ const AuthContext = createContext<AuthContextProps | undefined>(undefined);
 interface DecodedToken {
     exp: number;
     [CLAIMS.ROLE]: string;
+    [CLAIMS.EMAIL]: string;
 }
 
 const isTokenExpired = (token: string): boolean => {
@@ -31,6 +32,8 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
             const decoded: DecodedToken = jwtDecode(token);
             setIsAuthenticated(true);
             setRole(decoded[CLAIMS.ROLE]);
+            localStorage.setItem('userEmail', decoded[CLAIMS.EMAIL]);
+            console.log(decoded[CLAIMS.EMAIL])
         } else {
             localStorage.removeItem('token');
         }
@@ -41,15 +44,14 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         setIsAuthenticated(true);
         const decoded: DecodedToken = jwtDecode(token);
         setRole(decoded[CLAIMS.ROLE]);
+        localStorage.setItem('userEmail', decoded[CLAIMS.EMAIL]);
     };
-
-    useEffect(() => {
-    }, [role]);
 
     const logout = () => {
         localStorage.removeItem('token');
         setIsAuthenticated(false);
         setRole('');
+        localStorage.removeItem('userEmail');
     };
 
     return (

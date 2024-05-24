@@ -1,16 +1,11 @@
 import React from 'react';
-import { Spinner, Box, Text } from '@chakra-ui/react';
-
+import { Box } from '@chakra-ui/react';
+import BookAppointment from './User/AvailableAppointments';
 
 const Home: React.FC = () => {
-
     return (
         <Box p={4}>
-            <Text
-                fontSize="xl" mb={4}>
-                Available appointments
-            </Text>
-            <Spinner size="xl" />
+            <BookAppointment />
         </Box>
     );
 };

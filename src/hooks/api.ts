@@ -63,6 +63,21 @@ export const getAppointments = async () => {
     return response.data;
 };
 
+export const bookAppointment = async (timeslot: Date) => {
+    const email = localStorage.getItem('userEmail');
+    const response = await axios.post(`${BOOKINGS_API_URL}`, {
+        email,
+        timeslot: timeslot.toISOString()
+    }, {
+        headers: {
+            Authorization: `Bearer ${getToken()}`,
+            'Content-Type': 'application/json'
+        }
+    });
+    return response.data;
+};
+
+
 export default {
     loginAccount,
     registerAccount,
@@ -71,4 +86,5 @@ export default {
     deleteAccount,
     updateAccount,
     getAppointments,
+    bookAppointment,
 };
