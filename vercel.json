@@ -1,8 +1,9 @@
 {
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
-    }
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/" },
+    { "source": "/register/(.*)", "destination": "/register/" },
+    { "source": "/login/(.*)", "destination": "/login/" },
+    { "source": "/logout/(.*)", "destination": "/logout" },
+    { "source": "/admin/dashboard/(.*)", "destination": "/admin/dashboard/" }
   ]
 }
