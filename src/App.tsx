@@ -9,6 +9,7 @@ import NavBar from './components/NavBar';
 import ProtectedRoute from './components/Routes/ProtectedRoute';
 import PublicRoute from './components/Routes/PublicRoute';
 import Home from './components/Home';
+import Bookings from './components/User/Bookings';
 
 const App: React.FC = () => {
   return (
@@ -21,6 +22,7 @@ const App: React.FC = () => {
           <Route path="/logout" element={<UserLogout />} />
           <Route path="/register" element={<Register />} />
           <Route path="/" element={<Home />} />
+          <Route path="/bookings" element={<ProtectedRoute element={<Bookings />} requiredRole="User" />} />
         </Routes>
       </Router>
     </AuthProvider>

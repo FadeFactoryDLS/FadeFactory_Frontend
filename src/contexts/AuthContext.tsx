@@ -33,7 +33,6 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
             setIsAuthenticated(true);
             setRole(decoded[CLAIMS.ROLE]);
             localStorage.setItem('userEmail', decoded[CLAIMS.EMAIL]);
-            console.log(decoded[CLAIMS.EMAIL])
         } else {
             localStorage.removeItem('token');
         }
