@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Button, FormControl, FormLabel, Heading, Input, Stack, Checkbox, Alert, AlertIcon } from '@chakra-ui/react';
+import { Box, Button, FormControl, FormLabel, Heading, Input, Stack, Checkbox, Alert, AlertIcon, useToast } from '@chakra-ui/react';
 import { registerAccount } from '../../hooks/api';
 import { useNavigate } from 'react-router-dom';
 
@@ -10,6 +10,7 @@ const Register: React.FC = () => {
     const [isPromotional, setIsPromotional] = useState(false);
     const [error, setError] = useState('');
     const navigate = useNavigate();
+    const toast = useToast();
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -20,7 +21,13 @@ const Register: React.FC = () => {
         }
         try {
             await registerAccount({ firstName, email, password, isPromotional });
-            alert('User registered successfully!');
+            toast({
+                title: 'Registration successful.',
+                description: 'User registered successfully!',
+                status: 'success',
+                duration: 5000,
+                isClosable: true,
+            });
             navigate('/login');
         } catch (err: any) {
             if (err.response && err.response.status === 409) {
