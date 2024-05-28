@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { deleteAccount } from "../../hooks/api";
+import { deleteAccount, getAccountById, getAppointments, deleteAppointment } from "../../hooks/api";
 import { Box, Button, Input, useToast } from "@chakra-ui/react";
 
 const DeleteUser: React.FC = () => {
@@ -8,9 +8,19 @@ const DeleteUser: React.FC = () => {
 
     const handleDelete = async () => {
         try {
+            const account = await getAccountById(accountId);
+            const email = account.email;
+            const allBookings = await getAppointments();
+            const userBookings = allBookings.filter((booking: any) => booking.email === email);
+
+            for (const booking of userBookings) {
+                await deleteAppointment(booking.bookingId);
+            }
+
             await deleteAccount(accountId);
+
             toast({
-                title: `User with ID ${accountId} has been deleted`,
+                title: `User with ID ${accountId} has been deleted along with their bookings`,
                 status: 'success',
                 duration: 3000,
                 isClosable: true,

@@ -20,8 +20,18 @@ const NavBar: React.FC = () => {
                     >
                         Fade Factory
                     </Button>
-                </HStack>
-                <HStack spacing={4}>
+                    {isAuthenticated && role === 'User' && (
+                        <Button
+                            as={Link}
+                            to="/bookings"
+                            colorScheme="teal"
+                            variant="ghost"
+                            color="white"
+                            _hover={{ bg: "teal.600" }}
+                        >
+                            My Bookings
+                        </Button>
+                    )}
                     {isAuthenticated && role === 'Admin' && (
                         <Button
                             as={Link}
@@ -34,6 +44,8 @@ const NavBar: React.FC = () => {
                             Dashboard
                         </Button>
                     )}
+                </HStack>
+                <HStack spacing={4}>
                     {!isAuthenticated ? (
                         <>
                             <Button

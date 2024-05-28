@@ -4,6 +4,7 @@
     { "source": "/register/(.*)", "destination": "/register/" },
     { "source": "/login/(.*)", "destination": "/login/" },
     { "source": "/logout/(.*)", "destination": "/logout" },
-    { "source": "/admin/dashboard/(.*)", "destination": "/admin/dashboard/" }
+    { "source": "/admin/dashboard/(.*)", "destination": "/admin/dashboard/" },
+    { "source": "/bookings/(.*)", "destination": "/bookings"}
   ]
 }
