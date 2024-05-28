@@ -77,6 +77,14 @@ export const bookAppointment = async (timeslot: Date) => {
     return response.data;
 };
 
+export const deleteAppointment = async (bookingId: number) => {
+    const response = await axios.delete(`${BOOKINGS_API_URL}/${bookingId}`, {
+        headers: {
+            Authorization: `Bearer ${getToken()}`
+        }
+    });
+    return response.data;
+};
 
 export default {
     loginAccount,
@@ -87,4 +95,5 @@ export default {
     updateAccount,
     getAppointments,
     bookAppointment,
+    deleteAppointment,
 };
