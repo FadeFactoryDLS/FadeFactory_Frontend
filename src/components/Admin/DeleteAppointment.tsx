@@ -1,26 +1,26 @@
 import React, { useState } from "react";
-import { deleteAccount } from "../../hooks/api";
+import { deleteAppointment } from "../../hooks/api";
 import { Box, Button, Input, useToast, Heading } from "@chakra-ui/react";
 import BeigeBox from "../BeigeBox";
 
-const DeleteUser: React.FC = () => {
-  const [accountId, setAccountId] = useState<string>("");
+const DeleteAppointment: React.FC = () => {
+  const [appointmentId, setAppointmentId] = useState<string>("");
   const toast = useToast();
 
   const handleDelete = async () => {
     try {
-      await deleteAccount(accountId);
+      await deleteAppointment(appointmentId);
       toast({
-        title: `User with ID ${accountId} has been deleted`,
+        title: `Appointment with ID ${appointmentId} has been deleted`,
         status: "success",
         duration: 3000,
         isClosable: true,
       });
-      setAccountId("");
+      setAppointmentId("");
     } catch (error) {
       toast({
-        title: "Error deleting account",
-        description: `Unable to delete user with ID ${accountId}`,
+        title: "Error deleting appointment",
+        description: `Unable to delete appointment with ID ${appointmentId}`,
         status: "error",
         duration: 3000,
         isClosable: true,
@@ -31,7 +31,7 @@ const DeleteUser: React.FC = () => {
   return (
     <Box p={4} display="flex" flexDirection="column" alignItems="center">
       <Heading textAlign="center" as="h1" fontSize="35px" mb={4}>
-        Delete a user
+        Delete an appointment
       </Heading>
       <BeigeBox
         width="300px"
@@ -40,20 +40,19 @@ const DeleteUser: React.FC = () => {
         borderRadius="md"
         boxShadow="md"
         mt={8}
-
       >
         <Input
-          placeholder="Enter Account ID"
-          value={accountId}
-          onChange={(e) => setAccountId(e.target.value)}
-          marginBottom="4"
+          placeholder="Enter Appointment ID"
+          value={appointmentId}
+          onChange={(e) => setAppointmentId(e.target.value)}
+          mb={4}
         />
         <Button width="100%" colorScheme="red" onClick={handleDelete}>
-          Delete Account
+          Delete Appointment
         </Button>
       </BeigeBox>
     </Box>
   );
 };
 
-export default DeleteUser;
+export default DeleteAppointment;

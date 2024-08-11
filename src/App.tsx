@@ -9,9 +9,23 @@ import NavBar from './components/NavBar';
 import ProtectedRoute from './components/Routes/ProtectedRoute';
 import PublicRoute from './components/Routes/PublicRoute';
 import Home from './components/Home';
+import Footer from './components/Footer';
 
 const App: React.FC = () => {
+  const backgroundStyle: React.CSSProperties = {
+    backgroundImage: 'url(https://cdn2.vectorstock.com/i/1000x1000/44/11/hair-salon-background-07-vector-28144411.jpg)',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    height: '40vw',
+    width: '100vw',
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    zIndex: -1,
+  };
+
   return (
+    <div style={backgroundStyle}>
     <AuthProvider>
       <Router>
         <NavBar />
@@ -22,8 +36,10 @@ const App: React.FC = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/" element={<Home />} />
         </Routes>
+        <Footer />
       </Router>
     </AuthProvider>
+    </div>
   );
 };
 
