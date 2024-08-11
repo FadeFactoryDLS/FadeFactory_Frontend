@@ -60,7 +60,11 @@ export const getAppointments = async () => {
             Authorization: `Bearer ${getToken()}`
         }
     });
-    return response.data;
+    // Sorts appointments by timeslot
+    const sortedAppointments = response.data.sort((a: { timeslot: string }, b: { timeslot: string }) => 
+        new Date(a.timeslot).getTime() - new Date(b.timeslot).getTime()
+);
+    return sortedAppointments;
 };
 
 export const bookAppointment = async (timeslot: Date) => {
@@ -77,6 +81,15 @@ export const bookAppointment = async (timeslot: Date) => {
     return response.data;
 };
 
+export const deleteAppointment = async (id: string) => {
+    const response = await axios.delete(`${BOOKINGS_API_URL}/${id}`, {
+        headers: {
+            Authorization: `Bearer ${getToken()}`
+        }
+    });
+    return response.data;
+};
+
 
 export default {
     loginAccount,
@@ -87,4 +100,5 @@ export default {
     updateAccount,
     getAppointments,
     bookAppointment,
+    deleteAppointment
 };
